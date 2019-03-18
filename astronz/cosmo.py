@@ -28,7 +28,48 @@ class Cosmo:
     print '*************ASTRONZ**************'
     in1="What can I do for you?\n"
     in2="CosmoCalc (CC)\tRadioCalc(RC)\tAGN(A)\n"
-    
+
+# if (inp=='CC' or inp=='cc' or inp=='CosmoCalc'):
+#   in1="\nHere's what I can do:\n"
+#   in2="*lumdist(DL)\t*scalearcsec(LA)\t*scaleMpc(LR)\t*ageatz(CA)\tluminosity(L)\n"
+  
+#   inp=str(raw_input(in1+in2))
+  
+#   if (inp=='dl' or inp=='lumdist' or inp=='DL'):
+#       in1="\nz= "
+#       dl=c.lum_dist(float(raw_input(in1)))/3.085678e24
+#       print "D_L = %g Mpc"% (dl)
+#   elif(inp=='la' or inp=='scalearcsec' or inp=='LA'):
+#       in1="\nz= "
+#       in2="R(kpc)= "
+#       z=float(raw_input(in1))
+#       r=float(raw_input(in2))/1e3   #since the module wants the radius in Mpc
+#       print "R = %g arcsec"% (c.lin2ang(r,z))
+#   elif(inp=='lr' or inp=='scaleMpc' or inp=='LR'):
+#       in1="\nz= "
+#       in2="R(arcsec)= "
+#       z=float(raw_input(in1))
+#       r=float(raw_input(in2))
+#       print "R = %g kpc"% (c.ang2lin(r,z)*1e3)
+#   elif(inp=='ca' or inp=='scalearcsec' or inp=='CA'):
+#       in1="\nz= "
+#       dl=c.compute_age(float(raw_input(in1)))
+#       print "Age = %g Gyears"% (dl)
+#   elif(inp=='l' or inp=='luminosity' or inp=='L'):
+#       in1="\nz= "
+#       in2="F(Jy)= "
+#       z=float(raw_input(in1))
+#       f=float(raw_input(in2))
+#       a=(c.luminosity(z,f))
+#       print "L = %g erg/s\n"% a
+#       b=a*1e-7
+#       print "L = %g W"% b
+#       c=a*HI
+#       print "L = %g W"% c
+#   else:
+#       print 'you have not entered correct function\n EXIT FAILURE MOROAN'
+
+
     # H0
     self.h0=h0
 
