@@ -9,3 +9,5 @@ import astronz
 
 astronz.main([a for a in sys.argv[1:]])
 
+print ('\t************ --- ASTRONZ : DONE --- *************\n')
+

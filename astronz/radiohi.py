@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-# ASTRONZ: astro calc utilities
-
-
 import sys,string,os,math,numpy
 
 RAD2DEG=180./math.pi
@@ -24,140 +21,11 @@ class radioHI():
 
   def __init__(self):
 
-# elif (inp=='RC' or inp=='rc' or inp=='RadioCalc'):
-#   in1="\nHere's what I can do:\n"
-#   in2="""*HI at z(HI)\t*Tully-Fisher(TF)\n*TF-apparent(TFM)\t*Absolute Magnitude(M)\n*Optical depth(TAU)\t*ABSColumn Density(NHI)\n*fluxColumn Density(FHI)\t*EMColumn Density(EHI)\n*Mass HI(MHI)\t *Mass HI(CHI)\t*Mimimum_mass(MM)\n*Radio Power(RP)\t*VEL at z(HI)\t*Incl deVAB\t\n*Velocity resolution (VRES)\n"""
-  
-#   inp=str(raw_input(in1+in2))
-    
-#   if (inp=='hi' or inp=='HI at z' or inp=='HI'):
-#       in1="\nz= "
-#       dl=r.hiatz(float(raw_input(in1)))
-#       print "HI = %g MHz"% (dl)
-#   elif(inp=='tf' or inp=='Tully-Fisher' or inp=='TF'):
-#       in1="\nM(K20)= "
-#       in2="z= "
-#       M=float(raw_input(in1))
-#       z=float(raw_input(in2))
-#       dl=r.tully(M,z)
-#       print "V_flat = %g km/s"% (dl)
-#   elif(inp=='tfm' or inp=='TF-apparent' or inp=='TFM'):
-#       in1="\nm(K20)= "
-#       in2="z= "
-#       m=float(raw_input(in1))
-#       z=float(raw_input(in2))
-#       dl=r.tully_app(m,z)
-#       print "V_flat = %g km/s"% (dl)
-#   elif(inp=='rp' or inp=='RadPow' or inp=='RP'):
-#       in1="\nScont (Jy/beam)= "
-#       in2="z= "
-#       scont=float(raw_input(in1))
-#       z=float(raw_input(in2))
-#       p=r.RadPow(z,scont)
-#       print "Radio_Power = %g W/Hz"% (p)
-#   elif(inp=='vel' or inp=='VEL' or inp=='V'):
-#       in1="z= "
-#       z=float(raw_input(in1))
-#       p=r.Velo(z)
-#       print "velocity = %g km/s"% (p)  
-#   elif(inp=='deVAB' or inp=='VAB' or inp=='deV'):
-#       in1="AB= "
-#       ratio=float(raw_input(in1))
-#       result=numpy.arccos(ratio)/3.14159265*180.
-#       print "inclination = %g degrees"% (result)
-#   elif(inp=='M' or inp=='absmag' or inp=='m'):
-#       in1="\nm= "
-#       in2="z= "
-#       m=float(raw_input(in1))
-#       z=float(raw_input(in2))
-#       M=r.abs_mag(m,z)
-#       print "M = %g "% (M)
-#   elif (inp=='tau' or inp=='Optical Depth' or inp=='TAU'):
-#       in1="\nScont (Jy/beam)= "
-#       in2="Sabs (-Jy/beam)= "
-#       scont=float(raw_input(in1))
-#       sabs=float(raw_input(in2))
-#       dl=r.tau_abs(scont,sabs)
-#       print "tau = %g "% (dl)
-#   elif(inp=='nhi' or inp=='ABSColumn Density' or inp=='NHI'):
-#       in1="\ntau= "
-#       in3="FWHM (km/s)= "
-#       n=float(raw_input(in1))
-#       nn=float(raw_input(in3))
-#       dl=r.column(n,nn)
-#       print "N(HI) = %g cm^-2"% (dl)
-#   elif(inp=='ehi' or inp=='EMColumn Density' or inp=='EHI'):
-#       in1="\nSem (mJy/beam)= "
-#       in2="Beamx (arcsec)= "
-#       in3="Beamy (arcsec)= "
-#       in4="DeltaV (km/s)= "
-#       s=float(raw_input(in1))
-#       bx=float(raw_input(in2))
-#       by=float(raw_input(in3))
-#       dv=float(raw_input(in4))
-#       dl=r.column_em(s,bx,by,dv)
-#       print "N(HI) = %g cm^-2"% (dl)
-#   elif (inp=='mhi' or inp=='Mass HI' or inp=='MHI'):
-#       in1="\nScont (Jy/beam)= "
-#       in2="Sabs (-Jy/beam)= "
-#       in3="FWHM (km/s)= "
-#       in4="R radiosource (pc)= "
-#       scont=float(raw_input(in1))
-#       sabs=float(raw_input(in2))
-#       dv=float(raw_input(in3))
-#       a=float(raw_input(in4))
-#       dl=r.mass_hi(scont,sabs,a,dv)
-#       print "M = %g Msun"% (dl)
-#   elif (inp=='chi' or inp=='Mass HI' or inp=='CHI'):
-#       in1="\nSint (Jy/beam*km/s imstat)= "
-#       in2="Beamx (arcsec)= "
-#       in3="Beamy (arcsec)= "
-#       in4="pix (arcsec)= "
-#       in5="z = "
-#       sint=float(raw_input(in1))
-#       bx=float(raw_input(in2))
-#       by=float(raw_input(in3))
-#       pix=float(raw_input(in4))
-#       z=float(raw_input(in5))
-#       dl=r.mass_hi_1(sint,bx,by,pix,z)
-#       print "M = %g Msun"% (dl)
-#   elif (inp=='fhi' or inp=='fluxColumn Density' or inp=='FHI'):
-#       in1="\nScont (Jy/beam)= "
-#       in2="Sabs (-Jy/beam)= "
-#       in3="FWHM (km/s)= "
-#       scont=float(raw_input(in1))
-#       sabs=float(raw_input(in2))
-#       dv=float(raw_input(in3))
-#       tau=r.tau_abs(scont,sabs)
-#       nhi=r.column(tau,dv)
-#       print "tau = %g \n"% (tau)
-#       print "N(HI) = %g cm^-2"% (nhi)
-#   elif (inp=='mm' or inp=='Minimum mass' or inp=='MM'):
-#       in1="\nNHI (cm^-2)= "
-#       in2="Beamx (arcsec)= "
-#       in3="Beamy (arcsec)= "
-#       in4="z ="
-#       nhi=float(raw_input(in1))
-#       bx=float(raw_input(in2))
-#       by=float(raw_input(in3))
-#       z=float(raw_input(in4))
-#       dl=r.mimimum_mass(nhi,bx,by,z)
-#       print "M = %g Msun"% (dl)
-#   elif (inp=='vres' or inp=='vel_res' or inp=='VRES'):
-#       in1="\nDeltaLambda (Hz)= "
-#       in2="Lambda (Hz) = "
-#       delta_lambda=float(raw_input(in1))
-#       lamb=float(raw_input(in2))
-#       deltav=r.vel_res(delta_lambda,lamb)
-#       print "Vel Res = %g km/s"% (deltav)
-#   else:
-#       print 'you have not entered correct function\n EXIT FAILURE MOROAN'
 
-    print '*************ASTRONZ**************'
-    in1="What can I do for you?\n"
-    in2="CosmoCalc (CC)\tRadioCalc(RC)\tAGN(A)\n"
-    
-    inp=str(raw_input(in1+in2))
+
+    print ('\n\t************* --- ASTRONZ : HI --- **************\n')
+    print ('\t\t... Neutral Hydrogen Tools ... \n')
+
     self.hi=1.42040575177e+09 
     self.m26=-23.33
     self.s_tully=-9.64
@@ -271,4 +139,152 @@ class radioHI():
     min_mass=nhi*self.mhi*beamarea/MSUN
     
     return min_mass
+
+  def main(self):
+
+    in1="\t... Here's what I can do: ...\n"
+    in2="""\n\t- HI at z\t->\tHI
+\t- Tully-Fisher\t->\tTF
+\t- TF-apparent\t->\tTFM
+\t- Absolute Magnitude\t->\tM
+\t- Optical depth\t->\tTAU
+\t- Abs. Column Density\t->\tNHI
+\t- fluxColumn Density\t->\tFHI
+\t- EMColumn Density\t->\tEHI
+\t- Mass HI\t->\tMHI
+\t- Mass HI\t->\tCHI
+\t- Mimimum_mass\t->\tMM
+\t- Radio Power\t->\tRP
+\t- Vel. at z(HI)\t->\tVEL
+\t- Incl. deVAB\t->deVAB
+\t- Vel. res.\t->\tVRES
+        """
+  
+    inp=str(raw_input(in1+in2))
     
+    if (inp=='hi' or inp=='HI at z' or inp=='HI'):
+        in1="\nz= "
+        dl=r.hiatz(float(raw_input(in1)))
+        print "HI = %g MHz"% (dl)
+    elif(inp=='tf' or inp=='Tully-Fisher' or inp=='TF'):
+        in1="\nM(K20)= "
+        in2="z= "
+        M=float(raw_input(in1))
+        z=float(raw_input(in2))
+        dl=r.tully(M,z)
+        print "V_flat = %g km/s"% (dl)
+    elif(inp=='tfm' or inp=='TF-apparent' or inp=='TFM'):
+        in1="\nm(K20)= "
+        in2="z= "
+        m=float(raw_input(in1))
+        z=float(raw_input(in2))
+        dl=r.tully_app(m,z)
+        print "V_flat = %g km/s"% (dl)
+    elif(inp=='rp' or inp=='RadPow' or inp=='RP'):
+        in1="\nScont (Jy/beam)= "
+        in2="z= "
+        scont=float(raw_input(in1))
+        z=float(raw_input(in2))
+        p=r.RadPow(z,scont)
+        print "Radio_Power = %g W/Hz"% (p)
+    elif(inp=='vel' or inp=='VEL' or inp=='V'):
+        in1="z= "
+        z=float(raw_input(in1))
+        p=r.Velo(z)
+        print "velocity = %g km/s"% (p)  
+    elif(inp=='deVAB' or inp=='VAB' or inp=='deV'):
+        in1="AB= "
+        ratio=float(raw_input(in1))
+        result=numpy.arccos(ratio)/3.14159265*180.
+        print "inclination = %g degrees"% (result)
+    elif(inp=='M' or inp=='absmag' or inp=='m'):
+        in1="\nm= "
+        in2="z= "
+        m=float(raw_input(in1))
+        z=float(raw_input(in2))
+        M=r.abs_mag(m,z)
+        print "M = %g "% (M)
+    elif (inp=='tau' or inp=='Optical Depth' or inp=='TAU'):
+        in1="\nScont (Jy/beam)= "
+        in2="Sabs (-Jy/beam)= "
+        scont=float(raw_input(in1))
+        sabs=float(raw_input(in2))
+        dl=r.tau_abs(scont,sabs)
+        print "tau = %g "% (dl)
+    elif(inp=='nhi' or inp=='ABSColumn Density' or inp=='NHI'):
+        in1="\ntau= "
+        in3="FWHM (km/s)= "
+        n=float(raw_input(in1))
+        nn=float(raw_input(in3))
+        dl=r.column(n,nn)
+        print "N(HI) = %g cm^-2"% (dl)
+    elif(inp=='ehi' or inp=='EMColumn Density' or inp=='EHI'):
+        in1="\nSem (mJy/beam)= "
+        in2="Beamx (arcsec)= "
+        in3="Beamy (arcsec)= "
+        in4="DeltaV (km/s)= "
+        s=float(raw_input(in1))
+        bx=float(raw_input(in2))
+        by=float(raw_input(in3))
+        dv=float(raw_input(in4))
+        dl=r.column_em(s,bx,by,dv)
+        print "N(HI) = %g cm^-2"% (dl)
+    elif (inp=='mhi' or inp=='Mass HI' or inp=='MHI'):
+        in1="\nScont (Jy/beam)= "
+        in2="Sabs (-Jy/beam)= "
+        in3="FWHM (km/s)= "
+        in4="R radiosource (pc)= "
+        scont=float(raw_input(in1))
+        sabs=float(raw_input(in2))
+        dv=float(raw_input(in3))
+        a=float(raw_input(in4))
+        dl=r.mass_hi(scont,sabs,a,dv)
+        print "M = %g Msun"% (dl)
+    elif (inp=='chi' or inp=='Mass HI' or inp=='CHI'):
+        in1="\nSint (Jy/beam*km/s imstat)= "
+        in2="Beamx (arcsec)= "
+        in3="Beamy (arcsec)= "
+        in4="pix (arcsec)= "
+        in5="z = "
+        sint=float(raw_input(in1))
+        bx=float(raw_input(in2))
+        by=float(raw_input(in3))
+        pix=float(raw_input(in4))
+        z=float(raw_input(in5))
+        dl=r.mass_hi_1(sint,bx,by,pix,z)
+        print "M = %g Msun"% (dl)
+    elif (inp=='fhi' or inp=='fluxColumn Density' or inp=='FHI'):
+        in1="\nScont (Jy/beam)= "
+        in2="Sabs (-Jy/beam)= "
+        in3="FWHM (km/s)= "
+        scont=float(raw_input(in1))
+        sabs=float(raw_input(in2))
+        dv=float(raw_input(in3))
+        tau=r.tau_abs(scont,sabs)
+        nhi=r.column(tau,dv)
+        print "tau = %g \n"% (tau)
+        print "N(HI) = %g cm^-2"% (nhi)
+    elif (inp=='mm' or inp=='Minimum mass' or inp=='MM'):
+        in1="\nNHI (cm^-2)= "
+        in2="Beamx (arcsec)= "
+        in3="Beamy (arcsec)= "
+        in4="z ="
+        nhi=float(raw_input(in1))
+        bx=float(raw_input(in2))
+        by=float(raw_input(in3))
+        z=float(raw_input(in4))
+        dl=r.mimimum_mass(nhi,bx,by,z)
+        print "M = %g Msun"% (dl)
+    elif (inp=='vres' or inp=='vel_res' or inp=='VRES'):
+        in1="\nDeltaLambda (Hz)= "
+        in2="Lambda (Hz) = "
+        delta_lambda=float(raw_input(in1))
+        lamb=float(raw_input(in2))
+        deltav=r.vel_res(delta_lambda,lamb)
+        print "Vel Res = %g km/s"% (deltav)
+    else:
+        print ('\n\t ... you have not entered correct function ... \n')
+        print ('\t************* --- HI : ERROR --- **************\n')
+        sys.exit(0)
+
+    print ('\n\t************* --- HI : DONE --- **************\n')

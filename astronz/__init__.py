@@ -4,23 +4,15 @@ import sys
 import string
 import numpy as np
 
-import logging
-import warnings
 
 import argparse
 from  argparse import ArgumentParser
 import textwrap as _textwrap
 
-from astropy.io import fits, ascii
-from astropy import units as u
-#from astropy.time import Time, TimeDelta
-#from astropy.table import Table, Column, MaskedColumn
 
-
-# get rfinder install directory
+# get astronz install directory
 ASTRONZ_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASTRONZ_DIR = ASTRONZ_PATH+'/astronz/'
-
 sys.path.append(os.path.join(ASTRONZ_PATH, 'astronz'))
 
 import agn
@@ -28,7 +20,6 @@ import cosmo
 import radiohi
 
 import pkg_resources
-
 try:
     __version__ = pkg_resources.require("astronz")[0].version
 except pkg_resources.DistributionNotFound:
@@ -48,7 +39,6 @@ class MultilineFormatter(argparse.HelpFormatter):
 
 def main (argv):
 
-    print '\n\t************* --- ASTRONZ --- **************\n'
 
     for i, arg in enumerate(argv):
         if (arg[0] == '-') and arg[1].isdigit(): argv[i] = ' ' + arg
@@ -91,6 +81,8 @@ def main (argv):
 
 # Get the function to execute for the command
     if args.help:  #rfinder -h 
+        print '\n\t************* --- ASTRONZ --- **************\n'
+
         print ('\t... help: called for help ...\n')
         parser.print_help()
 
@@ -104,15 +96,14 @@ astronz -agn (-a)
         sys.exit(0)
 
     elif args.cosmo:    #rfinder -c config_file.yml         
-        print ('\t... cosmo: Cosmological Tools ... \n')
         c = cosmo.Cosmo()
+        c.main()
 
     elif args.radioHI:
-        print ('\t... radioHI: Neutral Hydrogen Tools ... \n')
         hi = radiohi.radioHI()
 
     elif args.agn:
         print ('\t... AGN: AGN science Tools ... \n')
         a = agn.AGN()
-
+        a.main()
 
