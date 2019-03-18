@@ -27,16 +27,6 @@ import agn
 import cosmo
 import radiohi
 
-#c= cosmo.Cosmo()
-#r= hi.radioHI()
-#a= agn.AGN()
-
-#DEFAULT_CONFIG = 'rfinder_default.yml'
-
-#if not sys.warnoptions:
-#    warnings.simplefilter("ignore")
-
-
 import pkg_resources
 
 try:
@@ -82,22 +72,24 @@ def main (argv):
         #type= str,
         default = False,
         action='store_true',
-        help= 'select set of cosmological tools')
+        help= 'tools for cosmological calculations')
 
     add('-a', '--agn',
         #type=str,
         default=False,
         action='store_true',
-        help='select set of tools for AGN science')
+        help='tools for AGN science')
 
     add('-hi', '--radioHI',
         #type=bool,
-        #default=False,
+        default=False,
         action='store_true',
-        help='''select set of tools for neutral hydrogen science''')
+        help='''tools for neutral hydrogen science''')
 
     args = parser.parse_args(argv)
 
+
+# Get the function to execute for the command
     if args.help:  #rfinder -h 
         print ('\t... help: called for help ...\n')
         parser.print_help()
@@ -122,4 +114,5 @@ astronz -agn (-a)
     elif args.agn:
         print ('\t... AGN: AGN science Tools ... \n')
         a = agn.AGN()
+
 
