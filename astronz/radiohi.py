@@ -6,7 +6,6 @@
 import sys,string,os,math,numpy
 
 RAD2DEG=180./math.pi
-HI=#GHz
 TSPIN=100 #K
 MSUN=1.98855e33
 MHI=1.6749E-24
@@ -22,6 +21,7 @@ SIGMAT=6.66524E-25 #cm2
 
     
 class radioHI():
+  
   def __init__(self):
 
     print '*************ASTRONZ**************'
