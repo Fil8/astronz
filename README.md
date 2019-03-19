@@ -53,8 +53,6 @@ This is an example, where using the class `hi` we determine the frequency of the
 
 
 ```
-(astronz) maccagni@monaco:~/programs/astronz$ astronz
-
 	************* --- AstronZ --- **************
 
 	   ... list of the avaliable classes: ...
