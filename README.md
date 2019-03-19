@@ -3,7 +3,7 @@
 **Insallation instructions**
 
 In a new virtual environment, clone this repository: `git clone git clone https://github.com/Fil8/astronz.
-From the directory of your repository run:
+From the repository directory type:
 
 ```
 pip install -e .

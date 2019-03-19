@@ -215,11 +215,11 @@ class Cosmo:
   def main(self):
 
     in1="\t... Here's what I can do: ...\n"
-    in2='''\n\t - lumdist(DL)
-\t - scalearcsec(LA)
-\t - scaleMpc(LR)
-\t - ageatz(CA)
-\t - luminosity(L)\n
+    in2='''\n\t - luminosity distance (DL)
+\t - size from arcsec (LA)
+\t - size from Mpc (LR)
+\t - age at redshift (CA)
+\t - luminosity (L)\n
     '''
     
     inp=str(raw_input(in1+in2))
