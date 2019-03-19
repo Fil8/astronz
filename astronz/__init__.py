@@ -10,7 +10,7 @@ from  argparse import ArgumentParser
 import textwrap as _textwrap
 
 
-# get astronz install directory
+# get AstronZ install directory
 ASTRONZ_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASTRONZ_DIR = ASTRONZ_PATH+'/astronz/'
 sys.path.append(os.path.join(ASTRONZ_PATH, 'astronz'))
@@ -21,7 +21,7 @@ import radiohi
 
 import pkg_resources
 try:
-    __version__ = pkg_resources.require("astronz")[0].version
+    __version__ = pkg_resources.require("AstronZ")[0].version
 except pkg_resources.DistributionNotFound:
     __version__ = "dev"
 
@@ -43,7 +43,7 @@ def main (argv):
     for i, arg in enumerate(argv):
         if (arg[0] == '-') and arg[1].isdigit(): argv[i] = ' ' + arg
 
-    parser = ArgumentParser(description='ASTRONZ: tools to analyse astronomical data'
+    parser = ArgumentParser(description='AstronZ: tools to analyse astronomical data'
                             '|n version {:s} |n install path {:s} |n '
                             'Filippo Maccagni <filippo.maccagni@gmial.com>'.format(__version__,
                                                                                os.path.dirname(__file__)),
@@ -59,51 +59,77 @@ def main (argv):
             version='{:s} version {:s}'.format(parser.prog, __version__))
 
     add('-c', '--cosmo',
-        #type= str,
-        default = False,
         action='store_true',
         help= 'tools for cosmological calculations')
 
     add('-a', '--agn',
-        #type=str,
-        default=False,
         action='store_true',
         help='tools for AGN science')
 
     add('-hi', '--radioHI',
-        #type=bool,
-        default=False,
         action='store_true',
         help='''tools for neutral hydrogen science''')
 
     args = parser.parse_args(argv)
 
+    if args.help:
+        print '\n\t************* --- AstronZ : Help --- **************\n'
 
-# Get the function to execute for the command
-    if args.help:  #rfinder -h 
-        print '\n\t************* --- ASTRONZ --- **************\n'
-
-        print ('\t... help: called for help ...\n')
+        print ('\t\t  ... called for help ...\n')
         parser.print_help()
 
         print ("""\nRun a command. This can be:\n
-astronz
-astronz -cosmo (-c)
-astronz -radioHI (-hi)
-astronz -agn (-a)
+astronz\t\t(all tools)
+astronz -c\t(cosmological tools)
+astronz -hi\t(neutral hydroge tools)
+astronz -agn \t(AGN science tools)
             """)
+        print '\n\t************* --- AstronZ : DONE --- **************\n'
 
         sys.exit(0)
 
-    elif args.cosmo:    #rfinder -c config_file.yml         
+    elif args.cosmo:
+
+        print ('\n\t************* --- AstronZ : Cosmo --- **************\n')
+        print ('\t\t    ... Cosmological Tools ... \n')        
         c = cosmo.Cosmo()
         c.main()
 
     elif args.radioHI:
+        print ('\n\t************* --- AstronZ : HI --- **************\n')
+        print ('\t\t... Neutral Hydrogen Tools ... \n')
         hi = radiohi.radioHI()
 
     elif args.agn:
-        print ('\t... AGN: AGN science Tools ... \n')
+        print ('\n\t************* --- AstronZ : AGN --- **************\n')
+        print ('\t\t   ... AGN Science tools ... \n')
         a = agn.AGN()
         a.main()
+    else:
+        print '\n\t************* --- AstronZ --- **************\n'
+        in1="\t   ... list of the avaliable classes: ...\n"
+        in2='''\n\t - c (cosmological tools)
+\t - hi (neutral hydrogen tools)
+\t - a (AGN science tools)\n
+'''
+        inp=str(raw_input(in1+in2))
 
+        if inp == 'c':
+            print ('\n\t************* --- AstronZ : Cosmo --- **************\n')
+            print ('\t\t    ... Cosmological Tools ... \n')        
+            c = cosmo.Cosmo()
+            c.main()
+        elif inp == 'a':
+            print ('\n\t************* --- AstronZ : AGN --- **************\n')
+            print ('\t\t   ... AGN Science tools ... \n')
+            a = agn.AGN()
+            a.main()
+        elif inp == 'hi':
+            print ('\n\t************* --- AstronZ : HI --- **************\n')
+            print ('\t\t... Neutral Hydrogen Tools ... \n')
+            hi = radiohi.radioHI()
+            hi.main()
+        else:
+            print ('\n\t ... you have not entered an available class function ... \n')
+            print ('\t************* --- AstronZ : ERROR --- **************\n')
+            sys.exit(0)

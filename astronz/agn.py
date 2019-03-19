@@ -6,15 +6,18 @@
 import sys,string,os
 import numpy as np
 
+import cosmo
+
+
 class AGN:
       
   def __init__(self):
 
-    print ('\n\t************* --- ASTRONZ : AGN --- **************\n')
-    print ('\t\t   ... AGN Science tools ... \n')
+    self.cc = cosmo.Cosmo()
+
 
     self.rad2deg = 180./np.pi
-    self.c=2.99792458E10    #cm/s
+    self.C=2.99792458E10    #cm/s
     self.G=6.6742E-08       #cm3kg-1s-1
     self.mp=1.67492728E-24  #g
     self.sigmaT=6.66524E-25 #cm2
@@ -35,9 +38,9 @@ class AGN:
     
     #set mbh in g:
     mbhg=mbh*self.msun
-    a=4*np.pi*self.G*self.mp*self.c
+    a=4*np.pi*self.G*self.mp*self.C
     ledd=a*mbhg/self.sigmaT
-    medd=ledd/(self.eff*(self.c)**2)*self.myr
+    medd=ledd/(self.eff*(self.C)**2)*self.myr
 
     ledd1=1.3e38*mbh
     
@@ -46,7 +49,7 @@ class AGN:
     
   def mechanical(self,z,f,mbh):
     
-    lum=c.luminosity(z,f)*1e-7
+    lum=self.cc.luminosity(z,f)*1e-7
     lmec=self.rad*pow(lum/1e24,0.71) *1e7       #relation in W result in erg/s
     #a=self.eddington(mbh)[1]
     
@@ -56,7 +59,7 @@ class AGN:
   
   def radiative(self, z,foiii,mbh):
     
-    dl=c.lum_dist(z)
+    dl=self.cc.c.lum_dist(z)
     lum=(foiii*4*np.pi*(dl)**2)
 
 
@@ -84,7 +87,7 @@ class AGN:
 
   def bondi (self,z,f,mbh):
     
-    lr=c.luminosity(z,f)
+    lr=self.cc.luminosity(z,f)
     
     pjet=lr/self.l0
     pjet=(pjet**0.71)
@@ -103,16 +106,16 @@ class AGN:
     pbondi=pow(10,pbondi)
     pbondi=pbondi*1e43
 
-    mbondi=pbondi/((self.c**2)*1)*self.myr
+    mbondi=pbondi/((self.C**2)*1)*self.myr
 
-    mbondijet=pjet/((self.c**2)*0.012)*self.myr
+    mbondijet=pjet/((self.C**2)*0.012)*self.myr
    
     # from Allen et al. 2006 Pjet => Pbondi = 0.1 * Mbondi *c^2
     pallen=(np.log10(pjet/1e43)*0.77)+0.65
     pallen=pow(10,pallen)
     pallen=pallen*1e43
     
-    mbondia=pallen/((self.c**2)*0.1)*self.myr
+    mbondia=pallen/((self.C**2)*0.1)*self.myr
 
     
     #bondi and mass accretion rate from BH mass (Willett 2010)
@@ -137,7 +140,7 @@ class AGN:
 
     bondi=lambdaa*np.pi*cs*ra**2*rho*self.myr
     
-    pbonditop=0.017*bondi/self.myr*self.c**2
+    pbonditop=0.017*bondi/self.myr*self.C**2
 
     #bondiratio=bondi/self.myr*(self.c**2)*self.eff
     #print bondiratio
@@ -146,7 +149,7 @@ class AGN:
     #you confront the mass accretion rate with the eddington luminosity
     
     ledd=self.eddington(mbh)[1]
-    ledduni=ledd/self.c**2*self.myr
+    ledduni=ledd/self.C**2*self.myr
     
     accr=bondi/ledduni
     print accr
@@ -158,7 +161,7 @@ class AGN:
     mcloud=1e4
     
     #pjet allen
-    dl=c.lum_dist(z)
+    dl=self.cc.lum_dist(z)
 
     minorax=0.4*1e-3*dl  #cm
     majorax=1.*1e-3*dl    #cm
@@ -193,7 +196,7 @@ class AGN:
   def Xaccretion (self,z,f,mbh):
     
     ledd=self.eddington(mbh)[1]
-    lx=c.luminosity(z,f)
+    lx=self.cc.luminosity(z,f)
     lx=1e41
     lxratio=np.log10(lx/ledd)
 

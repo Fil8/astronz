@@ -21,11 +21,6 @@ class radioHI():
 
   def __init__(self):
 
-
-
-    print ('\n\t************* --- ASTRONZ : HI --- **************\n')
-    print ('\t\t... Neutral Hydrogen Tools ... \n')
-
     self.hi=1.42040575177e+09 
     self.m26=-23.33
     self.s_tully=-9.64
@@ -76,8 +71,8 @@ class radioHI():
     
   def tully_app(self,m,z):
     
-    M=r.abs_mag(m,z)
-    T=r.tully(M,z)
+    M=self.abs_mag(m,z)
+    T=self.tully(M,z)
     
     return T
 
@@ -110,8 +105,8 @@ class radioHI():
     
   def mass_hi(self,scont,sabs,a,dv):
     
-    tau=r.tau_abs(scont,sabs)
-    nhi=r.column(tau,dv)
+    tau=self.tau_abs(scont,sabs)
+    nhi=self.column(tau,dv)
     print nhi
     area=((a*PC)**2)
     
@@ -164,33 +159,33 @@ class radioHI():
     
     if (inp=='hi' or inp=='HI at z' or inp=='HI'):
         in1="\nz= "
-        dl=r.hiatz(float(raw_input(in1)))
+        dl=self.hiatz(float(raw_input(in1)))
         print "HI = %g MHz"% (dl)
     elif(inp=='tf' or inp=='Tully-Fisher' or inp=='TF'):
         in1="\nM(K20)= "
         in2="z= "
         M=float(raw_input(in1))
         z=float(raw_input(in2))
-        dl=r.tully(M,z)
+        dl=self.tully(M,z)
         print "V_flat = %g km/s"% (dl)
     elif(inp=='tfm' or inp=='TF-apparent' or inp=='TFM'):
         in1="\nm(K20)= "
         in2="z= "
         m=float(raw_input(in1))
         z=float(raw_input(in2))
-        dl=r.tully_app(m,z)
+        dl=self.tully_app(m,z)
         print "V_flat = %g km/s"% (dl)
     elif(inp=='rp' or inp=='RadPow' or inp=='RP'):
         in1="\nScont (Jy/beam)= "
         in2="z= "
         scont=float(raw_input(in1))
         z=float(raw_input(in2))
-        p=r.RadPow(z,scont)
+        p=self.RadPow(z,scont)
         print "Radio_Power = %g W/Hz"% (p)
     elif(inp=='vel' or inp=='VEL' or inp=='V'):
         in1="z= "
         z=float(raw_input(in1))
-        p=r.Velo(z)
+        p=self.Velo(z)
         print "velocity = %g km/s"% (p)  
     elif(inp=='deVAB' or inp=='VAB' or inp=='deV'):
         in1="AB= "
@@ -202,21 +197,21 @@ class radioHI():
         in2="z= "
         m=float(raw_input(in1))
         z=float(raw_input(in2))
-        M=r.abs_mag(m,z)
+        M=self.abs_mag(m,z)
         print "M = %g "% (M)
     elif (inp=='tau' or inp=='Optical Depth' or inp=='TAU'):
         in1="\nScont (Jy/beam)= "
         in2="Sabs (-Jy/beam)= "
         scont=float(raw_input(in1))
         sabs=float(raw_input(in2))
-        dl=r.tau_abs(scont,sabs)
+        dl=self.tau_abs(scont,sabs)
         print "tau = %g "% (dl)
     elif(inp=='nhi' or inp=='ABSColumn Density' or inp=='NHI'):
         in1="\ntau= "
         in3="FWHM (km/s)= "
         n=float(raw_input(in1))
         nn=float(raw_input(in3))
-        dl=r.column(n,nn)
+        dl=self.column(n,nn)
         print "N(HI) = %g cm^-2"% (dl)
     elif(inp=='ehi' or inp=='EMColumn Density' or inp=='EHI'):
         in1="\nSem (mJy/beam)= "
@@ -227,7 +222,7 @@ class radioHI():
         bx=float(raw_input(in2))
         by=float(raw_input(in3))
         dv=float(raw_input(in4))
-        dl=r.column_em(s,bx,by,dv)
+        dl=self.column_em(s,bx,by,dv)
         print "N(HI) = %g cm^-2"% (dl)
     elif (inp=='mhi' or inp=='Mass HI' or inp=='MHI'):
         in1="\nScont (Jy/beam)= "
@@ -238,7 +233,7 @@ class radioHI():
         sabs=float(raw_input(in2))
         dv=float(raw_input(in3))
         a=float(raw_input(in4))
-        dl=r.mass_hi(scont,sabs,a,dv)
+        dl=self.mass_hi(scont,sabs,a,dv)
         print "M = %g Msun"% (dl)
     elif (inp=='chi' or inp=='Mass HI' or inp=='CHI'):
         in1="\nSint (Jy/beam*km/s imstat)= "
@@ -251,7 +246,7 @@ class radioHI():
         by=float(raw_input(in3))
         pix=float(raw_input(in4))
         z=float(raw_input(in5))
-        dl=r.mass_hi_1(sint,bx,by,pix,z)
+        dl=self.mass_hi_1(sint,bx,by,pix,z)
         print "M = %g Msun"% (dl)
     elif (inp=='fhi' or inp=='fluxColumn Density' or inp=='FHI'):
         in1="\nScont (Jy/beam)= "
@@ -260,8 +255,8 @@ class radioHI():
         scont=float(raw_input(in1))
         sabs=float(raw_input(in2))
         dv=float(raw_input(in3))
-        tau=r.tau_abs(scont,sabs)
-        nhi=r.column(tau,dv)
+        tau=self.tau_abs(scont,sabs)
+        nhi=self.column(tau,dv)
         print "tau = %g \n"% (tau)
         print "N(HI) = %g cm^-2"% (nhi)
     elif (inp=='mm' or inp=='Minimum mass' or inp=='MM'):
@@ -273,14 +268,14 @@ class radioHI():
         bx=float(raw_input(in2))
         by=float(raw_input(in3))
         z=float(raw_input(in4))
-        dl=r.mimimum_mass(nhi,bx,by,z)
+        dl=self.mimimum_mass(nhi,bx,by,z)
         print "M = %g Msun"% (dl)
     elif (inp=='vres' or inp=='vel_res' or inp=='VRES'):
         in1="\nDeltaLambda (Hz)= "
         in2="Lambda (Hz) = "
         delta_lambda=float(raw_input(in1))
         lamb=float(raw_input(in2))
-        deltav=r.vel_res(delta_lambda,lamb)
+        deltav=self.vel_res(delta_lambda,lamb)
         print "Vel Res = %g km/s"% (deltav)
     else:
         print ('\n\t ... you have not entered correct function ... \n')

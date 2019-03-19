@@ -25,8 +25,6 @@ class Cosmo:
   
   def __init__(self, h0=69.6, omega_l=0.714, omega_m=0.286, ztime=False):
 
-    print ('\n\t************* --- ASTRONZ : Cosmo --- **************\n')
-    print ('\t\t    ... Cosmological Tools ... \n')
 
     #define constants
     # H0
