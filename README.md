@@ -105,6 +105,7 @@ You can directly access `astronz` classes by typing directly one of the followin
 - `astronz -hi`: for neutral hydrogen tools
 - `astronz -a` : for AGN science tools
 
+***
 **Help**
 
 `astronz -h` will show you a (minimal) help:
