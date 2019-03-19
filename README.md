@@ -22,9 +22,9 @@ AstronZ provides a set of tools for the analysis of astronomical observations. W
 This is a set of tools that can be useful for quick calculations of astronomical parameters. Three main classes of functions are available:
 
 
-- **Cosmo**
-- **radioHI**
-- **AGN**
+- **Cosmo** : set of cosmological tools
+- **radioHI** : set of tools useful for neutral hydrogen (_HI_) science
+- **AGN** : set of tools useful for general AGN science
 
 check out the [WiKi](https://github.com/Fil8/astronz/wiki) for a complete description of all functions available in the `astronz` classes.
 
@@ -96,8 +96,6 @@ HI = 710.203 MHz
 
 	************ --- AstronZ : DONE --- *************
 ```
-
-Wh
 
 **Other usages**
 
