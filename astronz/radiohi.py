@@ -137,8 +137,8 @@ class radioHI():
 
   def main(self):
 
-    in1="\t... Here's what I can do: ...\n"
-    in2="""\n\t- HI at z\t->\tHI
+    in1='''\t... Here's what I can do: ...\n'''
+    in2='''\n\t- HI at z\t->\tHI
 \t- Tully-Fisher\t->\tTF
 \t- TF-apparent\t->\tTFM
 \t- Absolute Magnitude\t->\tM
@@ -153,130 +153,130 @@ class radioHI():
 \t- Vel. at z(HI)\t->\tVEL
 \t- Incl. deVAB\t->deVAB
 \t- Vel. res.\t->\tVRES
-        """
+        '''
   
     inp=str(raw_input(in1+in2))
     
     if (inp=='hi' or inp=='HI at z' or inp=='HI'):
-        in1="\nz= "
+        in1='''\nz =\t '''
         dl=self.hiatz(float(raw_input(in1)))
-        print "HI = %g MHz"% (dl)
+        print('''HI =\t %g\t MHz'''% (dl))
     elif(inp=='tf' or inp=='Tully-Fisher' or inp=='TF'):
-        in1="\nM(K20)= "
-        in2="z= "
+        in1='''\nM [K20] =\t '''
+        in2='''z =\t '''
         M=float(raw_input(in1))
         z=float(raw_input(in2))
         dl=self.tully(M,z)
-        print "V_flat = %g km/s"% (dl)
+        print('''\nV_flat =\t %g\t km/s'''% (dl))
     elif(inp=='tfm' or inp=='TF-apparent' or inp=='TFM'):
-        in1="\nm(K20)= "
-        in2="z= "
+        in1='''\nm [K20] =\t'''
+        in2='''z =\t '''
         m=float(raw_input(in1))
         z=float(raw_input(in2))
         dl=self.tully_app(m,z)
-        print "V_flat = %g km/s"% (dl)
+        print('''\nV_flat =\t %g\t km/s'''% (dl)
     elif(inp=='rp' or inp=='RadPow' or inp=='RP'):
-        in1="\nScont (Jy/beam)= "
-        in2="z= "
+        in1='''\nScont [Jy/beam] =\t'''
+        in2='''z =\t '''
         scont=float(raw_input(in1))
         z=float(raw_input(in2))
         p=self.RadPow(z,scont)
-        print "Radio_Power = %g W/Hz"% (p)
+        print('''\nRadio_Power =\t %g\t W/Hz'''% (p))
     elif(inp=='vel' or inp=='VEL' or inp=='V'):
-        in1="z= "
+        in1='''\nz =\t '''
         z=float(raw_input(in1))
         p=self.Velo(z)
-        print "velocity = %g km/s"% (p)  
+        print('''velocity = %g km/s'''% (p) )
     elif(inp=='deVAB' or inp=='VAB' or inp=='deV'):
-        in1="AB= "
+        in1='''\nAB =\t '''
         ratio=float(raw_input(in1))
         result=numpy.arccos(ratio)/3.14159265*180.
-        print "inclination = %g degrees"% (result)
+        print '''\ninclination =\t %g\t degrees'''% (result)
     elif(inp=='M' or inp=='absmag' or inp=='m'):
-        in1="\nm= "
-        in2="z= "
+        in1='''\nm =\t '''
+        in2='''z =\t '''
         m=float(raw_input(in1))
         z=float(raw_input(in2))
         M=self.abs_mag(m,z)
-        print "M = %g "% (M)
+        print('''M =\t %g '''% (M))
     elif (inp=='tau' or inp=='Optical Depth' or inp=='TAU'):
-        in1="\nScont (Jy/beam)= "
-        in2="Sabs (-Jy/beam)= "
+        in1='''\nScont [Jy/beam] =\t '''
+        in2='''Sabs [-Jy/beam] = '''
         scont=float(raw_input(in1))
         sabs=float(raw_input(in2))
         dl=self.tau_abs(scont,sabs)
-        print "tau = %g "% (dl)
+        print '''tau =\t %g '''% (dl)
     elif(inp=='nhi' or inp=='ABSColumn Density' or inp=='NHI'):
-        in1="\ntau= "
-        in3="FWHM (km/s)= "
+        in1='''\ntau =\t '''
+        in3='''FWHM [km/s] =\t '''
         n=float(raw_input(in1))
         nn=float(raw_input(in3))
         dl=self.column(n,nn)
-        print "N(HI) = %g cm^-2"% (dl)
+        print('''N(HI) =\t %g\t cm^-2'''% (dl))
     elif(inp=='ehi' or inp=='EMColumn Density' or inp=='EHI'):
-        in1="\nSem (mJy/beam)= "
-        in2="Beamx (arcsec)= "
-        in3="Beamy (arcsec)= "
-        in4="DeltaV (km/s)= "
+        in1='''\nSem [mJy/beam] =\t '''
+        in2='''Beamx [arcsec] =\t '''
+        in3='''Beamy [arcsec] =\t '''
+        in4='''DeltaV [km/s] =\t '''
         s=float(raw_input(in1))
         bx=float(raw_input(in2))
         by=float(raw_input(in3))
         dv=float(raw_input(in4))
         dl=self.column_em(s,bx,by,dv)
-        print "N(HI) = %g cm^-2"% (dl)
+        print('''N(HI) =\t %g\t cm^-2'''% (dl))
     elif (inp=='mhi' or inp=='Mass HI' or inp=='MHI'):
-        in1="\nScont (Jy/beam)= "
-        in2="Sabs (-Jy/beam)= "
-        in3="FWHM (km/s)= "
-        in4="R radiosource (pc)= "
+        in1='''\nScont [Jy/beam] =\t '''
+        in2='''Sabs [-Jy/beam] =\t '''
+        in3='''FWHM [km/s] =\t '''
+        in4='''R radiosource [pc] =\t '''
         scont=float(raw_input(in1))
         sabs=float(raw_input(in2))
         dv=float(raw_input(in3))
         a=float(raw_input(in4))
         dl=self.mass_hi(scont,sabs,a,dv)
-        print "M = %g Msun"% (dl)
+        print('''M =\t %g\t Msun'''% (dl))
     elif (inp=='chi' or inp=='Mass HI' or inp=='CHI'):
-        in1="\nSint (Jy/beam*km/s imstat)= "
-        in2="Beamx (arcsec)= "
-        in3="Beamy (arcsec)= "
-        in4="pix (arcsec)= "
-        in5="z = "
+        in1='''\nSint (Jy/beam*km/s imstat] =\t '''
+        in2='''Beamx [arcsec] =\t '''
+        in3='''Beamy [arcsec] =\t '''
+        in4='''pix [arcsec] =\t '''
+        in5='''z =\t '''
         sint=float(raw_input(in1))
         bx=float(raw_input(in2))
         by=float(raw_input(in3))
         pix=float(raw_input(in4))
         z=float(raw_input(in5))
         dl=self.mass_hi_1(sint,bx,by,pix,z)
-        print "M = %g Msun"% (dl)
+        print('''M = %g Msun'''% (dl))
     elif (inp=='fhi' or inp=='fluxColumn Density' or inp=='FHI'):
-        in1="\nScont (Jy/beam)= "
-        in2="Sabs (-Jy/beam)= "
-        in3="FWHM (km/s)= "
+        in1='''\nScont [Jy/beam]=\t '''
+        in2='''Sabs [-Jy/beam]=\t '''
+        in3='''FWHM [km/s]=\t '''
         scont=float(raw_input(in1))
         sabs=float(raw_input(in2))
         dv=float(raw_input(in3))
         tau=self.tau_abs(scont,sabs)
         nhi=self.column(tau,dv)
-        print "tau = %g \n"% (tau)
-        print "N(HI) = %g cm^-2"% (nhi)
+        print('''tau =\t %g \n'''% (tau))
+        print('''N(HI) =\t %g\t cm^-2'''% (nhi))
     elif (inp=='mm' or inp=='Minimum mass' or inp=='MM'):
-        in1="\nNHI (cm^-2)= "
-        in2="Beamx (arcsec)= "
-        in3="Beamy (arcsec)= "
-        in4="z ="
+        in1='''\nNHI [cm^-2] =\t '''
+        in2='''Beamx [arcsec] =\t '''
+        in3='''Beamy [arcsec] =\t '''
+        in4='''z =\t'''
         nhi=float(raw_input(in1))
         bx=float(raw_input(in2))
         by=float(raw_input(in3))
         z=float(raw_input(in4))
         dl=self.mimimum_mass(nhi,bx,by,z)
-        print "M = %g Msun"% (dl)
+        print('''M =\t %g\t Msun'''% (dl))
     elif (inp=='vres' or inp=='vel_res' or inp=='VRES'):
-        in1="\nDeltaLambda (Hz)= "
-        in2="Lambda (Hz) = "
+        in1='''\nDeltaLambda [Hz] =\t '''
+        in2='''Lambda [Hz] =\t '''
         delta_lambda=float(raw_input(in1))
         lamb=float(raw_input(in2))
         deltav=self.vel_res(delta_lambda,lamb)
-        print "Vel Res = %g km/s"% (deltav)
+        print('''Vel Res =\t %g\t km/s'''% (deltav))
     else:
         print ('\n\t ... you have not entered correct function ... \n')
         print ('\t************* --- HI : ERROR --- **************\n')

@@ -204,7 +204,7 @@ class AGN:
 
   def main(self):
 
-    in1="\t... Here's what I can do: ...\n"
+    in1='''\t... Here's what I can do: ...\n'''
     in2='''\n\t - Eddington\t->\tE
 \t - Mech. Lum.\t->\tLM
 \t - Rad. Lum.\t->\tLR
@@ -216,71 +216,71 @@ class AGN:
     inp=str(raw_input(in1+in2))
   
     if (inp=='e' or inp=='E' or inp=='eddington'):
-        in1="\nM_BH(M_sun)= "
+        in1='''\nM_BH [M_sun] = '''
         m=self.eddington(float(raw_input(in1)))
-        print "Medd = %g M_sun/yr\n"% (m[0])
-        print "Ledd = %g erg/s"% (m[1])
-        print "Ledd1 = %g M_sun/yr"% (m[2])
+        print('''\nMedd =\t %g\t M_sun/yr'''% (m[0]))
+        print('''Ledd =\t %g\t erg/s'''% (m[1]))
+        print('''Ledd =\t %g\t M_sun/yr'''% (m[2]))
     elif (inp=='lm' or inp=='Mechanical Luminosity' or inp=='LM'):
-        in1="\nz = "
-        in2="F (Jy)= "
-        in3="M_BH (M_sun)= "
+        in1='''\nz =\t '''
+        in2='''F [Jy] =\t '''
+        in3='''M_BH [M_sun] =\t'''
         z=float(raw_input(in1))
         f=float(raw_input(in2))
         mbh=float(raw_input(in3))
         lmech=self.mechanical(z,f,mbh)
-        print "L_mech = %g erg/s\n"% (lmech[0])
-        print "L_mech/Ledd= %g "%(lmech[1])
+        print('''\nL_mech =\t %g\t erg/s\n'''% (lmech[0]))
+        print('''L_mech/Ledd=\t %g\t '''%(lmech[1]))
     elif (inp=='lr' or inp=='Radiative Luminosity' or inp=='LR'):
-        in1="\nz = "
-        in2="F_OIII (erg/scm2)= "
-        in3="M_BH (M_sun)= "
+        in1='''\nz =\t '''
+        in2='''F_OIII [erg/scm2] =\t '''
+        in3='''M_BH (M_sun) =\t '''
         z=float(raw_input(in1))
         f=float(raw_input(in2))
         mbh=float(raw_input(in3))
         lmech=self.radiative(z,f,mbh)
-        print "L_rad = %g erg/s\n"% (lmech[0])
-        print "L_rad/Ledd= %g "%(lmech[1])
+        print('''\nL_rad =\t %g\t erg/s\n'''% (lmech[0]))
+        print('''L_rad/Ledd =\t %g '''%(lmech[1]))
     elif (inp=='LA' or inp=='lambda' or inp=='la'):
-        in1="\nz = "
-        in2="F_OIII (erg/scm2)= "
-        in3="F_1.4 (Jy)= "
-        in4="M_BH (M_sun)= "
+        in1='''\nz =\t '''
+        in2='''F_OIII [erg/scm2] =\t '''
+        in3='''F_1.4 [Jy] =\t '''
+        in4='''M_BH [M_sun]=\t '''
         z=float(raw_input(in1))
         foiii=float(raw_input(in2))
         f=float(raw_input(in3))
         mbh=float(raw_input(in4))
         lmech=self.lamb(z,f,foiii,mbh)
-        print "Lambda = %g \n"% (lmech[0])
-        print "LOGLambda = %g \n"% (lmech[1])
+        print('''\nLambda =\t %g \n'''% (lmech[0]))
+        print('''LOGLambda =\t %g'''% (lmech[1]))
     elif (inp=='b' or inp=='Bondi' or inp=='B'):
-        in1="\nz = "
-        in2="F (Jy)= "
-        in3="M_BH (M_sun)= "
+        in1='''\nz =\t '''
+        in2='''F [Jy] =\t '''
+        in3='''M_BH [M_sun] =\t '''
         z=float(raw_input(in1))
         f=float(raw_input(in2))
         mbh=float(raw_input(in3))
         pj=self.bondi(z,f,mbh)
-        print "P_jet = %g erg/s\n"% (pj[0])
-        print "P_Bondi = %g erg/s\n"% (pj[1])
-        print "M_Bondi(B) = %g M_sun/yr\n"% (pj[2])
-        print "M_Bondi_jet(B) = %g M_sun/yr\n"% (pj[3])
-        print "M_Bondi(A) = %g M_sun/yr\n"% (pj[4])
-        print "M_bondi(BH) = %g\n"% (pj[5])
-        print "eff= %g\n"% (pj[6])
-        print "cloud= %g\n"% (pj[7])
-        print "pjet= %g\n"% (pj[8])
-        print "pallent= %g\n"% (pj[9])
-        print "pbonditop= %g\n"% (pj[10])
+        print('''\tP_jet =\t %g\t erg/s\n'''% (pj[0]))
+        print('''P_Bondi =\t %g\t erg/s\n'''% (pj[1]))
+        print('''M_Bondi(B) =\t %g\t M_sun/yr\n'''% (pj[2]))
+        print('''M_Bondi_jet(B) =\t %g\t M_sun/yr\n'''% (pj[3]))
+        print('''M_Bondi(A) =\t %g\t M_sun/yr\n'''% (pj[4]))
+        print('''M_bondi(BH) =\t %g\n'''% (pj[5]))
+        print('''eff=\t %g\n'''% (pj[6]))
+        print('''cloud=\t %g\n'''% (pj[7]))
+        print('''pjet=\t %g\n'''% (pj[8]))
+        print('''pallent=\t %g\n'''% (pj[9]))
+        print('''pbonditop=\t %g\n'''% (pj[10]))
     elif (inp=='x' or inp=='Xaccretion' or inp=='X-ray'):
-        in1="\nz = "
-        in2="F (Jy)= "
-        in3="M_BH (M_sun)= "
+        in1='''\nz =\t '''
+        in2='''F [Jy] =\t '''
+        in3='''M_BH [M_sun] =\t '''
         z=float(raw_input(in1))
         f=float(raw_input(in2))
         mbh=float(raw_input(in3))
         pj=self.Xaccretion(z,f,mbh)
-        print "Xratio = %g \n"% (pj)
+        print '''Xratio =\t %g \n'''% (pj)
     else:
         print ('\n\t ... you have not entered correct function ... \n')
         print ('\t************* --- AGN : ERROR --- **************\n')

@@ -225,36 +225,36 @@ class Cosmo:
     inp=str(raw_input(in1+in2))
     
     if (inp=='dl' or inp=='lumdist' or inp=='DL'):
-        in1="\nz= "
+        in1="\nz =\t "
         dl=self.lum_dist(float(raw_input(in1)))/3.085678e24
-        print("D_L = %g Mpc"% (dl))
+        print("D_L =\t %g\t Mpc"% (dl))
     elif(inp=='la' or inp=='scalearcsec' or inp=='LA'):
         in1="\nz= "
         in2="R(kpc)= "
         z=float(raw_input(in1))
         r=float(raw_input(in2))/1e3   #since the module wants the radius in Mpc
-        print("R = %g arcsec"% (self.lin2ang(r,z)))
+        print("R =\t %g\t arcsec"% (self.lin2ang(r,z)))
     elif(inp=='lr' or inp=='scaleMpc' or inp=='LR'):
-        in1="\nz= "
-        in2="R(arcsec)= "
+        in1="\nz =\t "
+        in2="R [arcsec] =\t "
         z=float(raw_input(in1))
         r=float(raw_input(in2))
         print("R = %g kpc"% (self.ang2lin(r,z)*1e3))
     elif(inp=='ca' or inp=='scalearcsec' or inp=='CA'):
-        in1="\nz= "
+        in1="\nz =\t "
         dl=self.compute_age(float(raw_input(in1)))
-        print("Age = %g Gyears"% (dl))
+        print("Age =\t %g\t Gyears"% (dl))
     elif(inp=='l' or inp=='luminosity' or inp=='L'):
         in1="\nz= "
         in2="F(Jy)= "
         z=float(raw_input(in1))
         f=float(raw_input(in2))
         a=(self.luminosity(z,f))
-        print("L = %g erg/s\n"% a)
+        print("L =\t %g\t erg/s\n"% a)
         b=a*1e-7
-        print("L = %g W"% b)
+        print("L =\t %g\t W"% b)
         c=a*HI
-        print("L = %g W"% c)
+        print("L =\t %g\t W"% c)
     else:
         print ('\n\t ... you have not entered correct function ... \n')
         print ('\t************* --- COSMO : ERROR --- **************\n')
