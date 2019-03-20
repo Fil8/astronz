@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys,string,os,math,numpy
+import cosmo
 
 RAD2DEG=180./math.pi
 TSPIN=100 #K
@@ -21,6 +22,9 @@ class radioHI():
 
   def __init__(self):
 
+    self.cc = cosmo.Cosmo()
+
+
     self.hi=1.42040575177e+09 
     self.m26=-23.33
     self.s_tully=-9.64
@@ -34,7 +38,7 @@ class radioHI():
 
   def RadPow(self,z,scont):
 
-    dl=c.lum_dist(z)*1e-2
+    dl=self.cc.lum_dist(z)*1e-2
     print dl
     power=math.log10(pow(10,-26)*scont*4*math.pi*(dl**2))
     
@@ -174,7 +178,7 @@ class radioHI():
         m=float(raw_input(in1))
         z=float(raw_input(in2))
         dl=self.tully_app(m,z)
-        print('''\nV_flat =\t %g\t km/s'''% (dl)
+        print('''\nV_flat =\t %g\t km/s'''% (dl))
     elif(inp=='rp' or inp=='RadPow' or inp=='RP'):
         in1='''\nScont [Jy/beam] =\t'''
         in2='''z =\t '''
